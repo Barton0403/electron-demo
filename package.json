@@ -1,0 +1,29 @@
+{
+  "name": "electron-demo",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ./app",
+    "pack": "build --dir",
+    "dist": "build"
+  },
+  "repository": "",
+  "keywords": [
+    "Electron",
+    "demo"
+  ],
+  "author": "barton",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^1.6.10",
+    "electron-builder": "^18.6.2",
+    "electron-updater": "^2.1.2"
+  },
+  "build": {
+    "appId": "barton.electron.demo",
+    "mac": {
+      "category": "barton.electron.demo"
+    }
+  }
+}

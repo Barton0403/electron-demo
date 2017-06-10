@@ -1,0 +1,41 @@
+body {
+    font-family: arial, "Microsoft YaHei", 微软雅黑, "Hiragino Sans GB", "WenQuanYi Micro Hei", tahoma, simsun, 宋体;
+    font-size: 14px;
+}
+
+h1, h2, h3 {
+    font-weight: normal;
+}
+
+/* print格式 */
+@media print {
+  body {
+    background: none;
+    color: black !important;
+    font-size: 70%;
+    margin: 0; padding: 0;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .nav, button, .demo-box:before,
+  #pdf-path, header p {
+    display: none;
+  }
+
+  .demo-box, h2,
+  pre, code {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  header {
+    padding: 0 0 10px 0;
+  }
+
+  code, .support {
+    font-size: 10px;
+  }
+}

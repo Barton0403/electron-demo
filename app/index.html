@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>electron-demo</title>
+    <link rel="stylesheet" href="./index.css">
+  </head>
+  <body>
+    <div>
+        <div style="float:left; margin-right: 15px;">
+            <h2>电脑信息</h2>
+            <p>
+                home directory: <span class='homedir'></span><br>
+                screen: <span class="screensize"></span><br>
+                workarea screen: <span class="workArea_screensize"></span>
+            </p>
+        </div>
+        <div style="float:left; margin-right: 15px;">
+            <h2>环境信息</h2>
+            <p>
+                node版本：<span class="nodev"></span><br>
+                chrome版本：<span class="chromev"></span><br>
+                electron版本：<span class="electronv"></span>
+            </p>
+        </div>
+        <div style="float:left;">
+            <h2>应用信息</h2>
+            <p>
+                app directory: <span class="appdir"></span>（采用exe方法获取）
+            </p>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+
+    <div>
+        <p class='txtReply'></p>
+        <button id="new-window">新建窗口</button>
+        <button id="new-bgwindow">新建后台窗口</button>
+    </div>
+
+    <div>
+        <button id="context-menu">触发自定义“show-context-menu”事件</button>
+    </div>
+
+    <div>
+        <button id="open-file-manager">打开系统用户目录</button>
+        <button id="open-file-manager-d">打开本地D盘根目录</button>
+        <a href="https://www.baidu.com">百度</a>
+    </div>
+
+    <div>
+        <button id="select-directory">选择文件</button>
+        <button id="show-save-dialog">保存文件</button>
+        <p class="txt-selected-filepath"></p>
+        <button id="show-error-dialog">显示报错提示</button>
+        <button id="show-info-dialog">显示信息提示</button>
+    </div>
+
+    <div>
+        <button id="ipc-async">进程异步交流</button>
+        <button id="ipc-sync">进程同步交流</button>
+    </div>
+
+    <div>
+        <button id="copy">复制</button><input class="copytxt" readOnly="true" value="点击左侧按钮复制" type="text">
+        <button id="paste">粘贴</button><span class="pastetxt"></span>
+    </div>
+
+    <div>
+        <button id="show-backpage">打开返回页面</button>
+    </div>
+
+    <div>
+        <p>注：一律输出在桌面</p>
+        <button id="page-to-pdf">页面输出为pdf格式</button>
+        <button id="take-screen">截屏</button>
+    </div>
+
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+</html>
