@@ -1,21 +1,27 @@
 {
-  "name": "electron-demo",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ./app",
-    "pack": "build --dir",
-    "disk": "build"
-  },
-  "repository": "",
-  "keywords": [
-    "Electron",
-    "demo"
-  ],
-  "author": "barton",
-  "devDependencies": {
-    "electron": "^1.6.10",
-    "electron-builder": "^18.6.2"
-  }
+    "name": "electron-demo",
+    "version": "1.0.0",
+    "description": "A minimal Electron application",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron ./app",
+        "pack": "build --dir",
+        "dist": "build",
+        "clean": "rimraf ./dist/*"
+    },
+    "repository": "https://github.com/Barton0403/electron-demo",
+    "keywords": [
+        "Electron",
+        "demo"
+    ],
+    "author": "barton",
+    "license": "CC0-1.0",
+    "devDependencies": {
+        "electron": "^1.6.10",
+        "electron-builder": "^18.6.2"
+    },
+    "dependencies": {
+        "electron-log": "^2.2.6",
+        "electron-updater": "^2.1.2"
+    }
 }

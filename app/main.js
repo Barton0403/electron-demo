@@ -2,6 +2,55 @@ const electron = require('electron')
 // Module to control application life.
 const app = electron.app
 
+// Copyright (c) The LHTML team
+// See LICENSE for details.
+
+const log = require('electron-log');
+const {autoUpdater} = require("electron-updater");
+
+process.env.NODE_ENV = 'production'
+
+// electron-log
+autoUpdater.logger = log;
+autoUpdater.logger.transports.file.level = 'info';
+log.info('App starting...');
+
+// 热更新
+function sendStatusToWindow(text) {
+  log.info(text);
+  dialog.showMessageBox({message: text})
+}
+autoUpdater.on('checking-for-update', () => {
+  sendStatusToWindow('Checking for update...');
+})
+autoUpdater.on('update-available', (ev, info) => {
+  sendStatusToWindow('Update available.');
+})
+autoUpdater.on('update-not-available', (ev, info) => {
+  sendStatusToWindow('Update not available.');
+})
+autoUpdater.on('error', (ev, err) => {
+  sendStatusToWindow(err);
+})
+autoUpdater.on('download-progress', (progressObj) => {
+  let log_message = "Download speed: " + progressObj.bytesPerSecond;
+  log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
+  log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
+  sendStatusToWindow(log_message);
+})
+autoUpdater.on('update-downloaded', (ev, info) => {
+  sendStatusToWindow('Update downloaded; will install in 5 seconds');
+});
+
+autoUpdater.on('update-downloaded', (ev, info) => {
+  // Wait 5 seconds, then quit and install
+  // In your application, you don't need to wait 5 seconds.
+  // You could call autoUpdater.quitAndInstall(); immediately
+  setTimeout(function() {
+    autoUpdater.quitAndInstall();
+  }, 5000)
+})
+
 // 注册默认协议，实现从其他应用跳转回来
 // FIXME 非安装包可能使用不了
 app.setAsDefaultProtocolClient('electron-demo')
@@ -72,9 +121,18 @@ let template = [{
 			}
 		}
 	]
+}, {
+    label: 'Help',
+    submenu: [{
+        label: 'About',
+        role: 'about'
+    }]
 }]
 
 function createWindow() {
+    //检测版本
+    autoUpdater.checkForUpdates()
+
 	// 自定义顶部菜单
 	const menu = Menu.buildFromTemplate(template)
 	Menu.setApplicationMenu(menu)
